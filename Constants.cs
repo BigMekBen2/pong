@@ -14,8 +14,8 @@ static class Constants
     public const int BallInitialX = FieldWidth / 2;
     public const int BallInitialY = FieldHeight / 2;
 
-    public const float PaddleSpeed = 6f;
-    public const float BallSpeedInitial = 5f;
+    public const float PaddleSpeed = 360f;
+    public const float BallSpeedInitial = 300f;
     public const float BallSpeedIncrement = 0.15f;
     public const float BallSpeedCap = BallSpeedInitial * 2f;
 

@@ -31,7 +31,7 @@ class Game
         ClearSoundFlags();
 
         if (State != GameState.GameOver)
-            MovePaddles();
+            MovePaddles(dt);
 
         switch (State)
         {
@@ -41,7 +41,7 @@ class Game
                 break;
 
             case GameState.Playing:
-                MoveBall();
+                MoveBall(dt);
                 ResolveWalls();
                 ResolvePaddles();
                 CheckScoring(now);
@@ -102,19 +102,19 @@ class Game
         _stateEnteredAt = now;
     }
 
-    void MovePaddles()
+    void MovePaddles(float dt)
     {
-        MoveP(Left);
-        MoveP(Right);
+        MoveP(Left, dt);
+        MoveP(Right, dt);
 
-        static void MoveP(Paddle p)
+        static void MoveP(Paddle p, float dt)
         {
-            p.Y += Constants.PaddleSpeed * p.Direction;
+            p.Y += Constants.PaddleSpeed * p.Direction * dt;
             p.Y = Math.Clamp(p.Y, Constants.PaddleHalfHeight, Constants.FieldHeight - Constants.PaddleHalfHeight);
         }
     }
 
-    void MoveBall() { Ball.X += Ball.Vx; Ball.Y += Ball.Vy; }
+    void MoveBall(float dt) { Ball.X += Ball.Vx * dt; Ball.Y += Ball.Vy * dt; }
 
     void ResolveWalls()
     {
