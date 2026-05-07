@@ -2,8 +2,10 @@ using Raylib_cs;
 
 Raylib.InitWindow(Constants.FieldWidth, Constants.FieldHeight, "Pong");
 Raylib.SetTargetFPS(60);
+Raylib.InitAudioDevice();
 
 var game = new Game();
+var sounds = new SoundManager();
 game.Start(Raylib.GetTime());
 
 while (!Raylib.WindowShouldClose())
@@ -24,6 +26,10 @@ while (!Raylib.WindowShouldClose())
 
     // --- Update ---
     game.Update(now, dt);
+
+    if (game.SoundPaddleHit) sounds.PlayPaddleHit();
+    if (game.SoundScore)     sounds.PlayScore();
+    if (game.SoundGameOver)  sounds.PlayGameOver();
 
     if (game.CanRestartOnKeyPress(now) && anyKey)
         game.Restart(now);
@@ -74,6 +80,8 @@ while (!Raylib.WindowShouldClose())
     Raylib.EndDrawing();
 }
 
+sounds.Unload();
+Raylib.CloseAudioDevice();
 Raylib.CloseWindow();
 
 void DrawPaddle(int cx, float cy)
