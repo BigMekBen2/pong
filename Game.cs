@@ -28,7 +28,8 @@ class Game
     {
         ClearSoundFlags();
 
-        MovePaddles();
+        if (State != GameState.GameOver)
+            MovePaddles();
 
         switch (State)
         {
