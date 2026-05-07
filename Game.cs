@@ -171,7 +171,7 @@ class Game
         {
             float newSpeed = speed * (1f + Constants.BallSpeedIncrement);
             if (newSpeed > Constants.BallSpeedCap) newSpeed = Constants.BallSpeedCap;
-            float scale = newSpeed / Ball.Speed;
+            float scale = newSpeed / speed;
             Ball.Vx *= scale;
             Ball.Vy *= scale;
         }
