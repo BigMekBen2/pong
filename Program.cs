@@ -54,8 +54,8 @@ while (!Raylib.WindowShouldClose())
             Constants.BallSize, Constants.BallSize, Color.White);
 
     // Scores
-    Raylib.DrawText(game.ScoreLeft.ToString(), Constants.FieldWidth / 2 - 60, 20, 40, Color.White);
-    Raylib.DrawText(game.ScoreRight.ToString(), Constants.FieldWidth / 2 + 30, 20, 40, Color.White);
+    Raylib.DrawText(game.ScoreLeftStr, Constants.FieldWidth / 2 - 60, 20, 40, Color.White);
+    Raylib.DrawText(game.ScoreRightStr, Constants.FieldWidth / 2 + 30, 20, 40, Color.White);
 
     // State overlays
     switch (game.State)

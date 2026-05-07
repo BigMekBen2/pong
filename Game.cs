@@ -5,6 +5,8 @@ class Game
     public Paddle Right = new();
     public int ScoreLeft;
     public int ScoreRight;
+    public string ScoreLeftStr = "0";
+    public string ScoreRightStr = "0";
     public GameState State = GameState.Waiting;
 
     // Sound flags — cleared each frame after being read
@@ -75,8 +77,8 @@ class Game
 
     public void Restart(double now)
     {
-        ScoreLeft = 0;
-        ScoreRight = 0;
+        ScoreLeft = 0; ScoreLeftStr = "0";
+        ScoreRight = 0; ScoreRightStr = "0";
         _serveToLeft = null;
         ResetBall(toLeft: Random.Shared.NextSingle() < 0.5f);
         EnterState(GameState.Waiting, now);
@@ -184,12 +186,12 @@ class Game
     {
         if (Ball.X < 0)
         {
-            ScoreRight++;
+            ScoreRight++; ScoreRightStr = ScoreRight.ToString();
             OnPoint(toLeft: true, now);
         }
         else if (Ball.X > Constants.FieldWidth)
         {
-            ScoreLeft++;
+            ScoreLeft++; ScoreLeftStr = ScoreLeft.ToString();
             OnPoint(toLeft: false, now);
         }
     }
